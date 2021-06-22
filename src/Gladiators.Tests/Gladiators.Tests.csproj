@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <GenerateProgramFile>false</GenerateProgramFile>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gladiators\Gladiators.csproj" />
+    <ProjectReference Include="..\Gladiators.External\Gladiators.External.csproj" />
   </ItemGroup>
 
 </Project>

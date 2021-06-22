@@ -6,7 +6,14 @@ namespace Gladiators.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // Write your program here
+            var gregor = new Entities.Gladiator("Gregor", 200, 40);
+            var jane = new Entities.Gladiator("Jane", 160, 50);
+
+            var fight = new Entities.Fight();
+            fight.Join(gregor);
+            fight.Join(jane);
+            fight.Start();
+
         }
     }
 }
