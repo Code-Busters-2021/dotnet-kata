@@ -5,7 +5,7 @@ public class Tests
 {
     public static void Main()
     {
-        Step1Tests();
+        Step2Tests();
     }
 
     static void Step1Tests()
@@ -39,6 +39,19 @@ public class Tests
 
         try { new Gladiator("2c"); }
         catch (InvalidNameException) { System.Console.WriteLine("Too short"); }
+    }
+
+    static void Step2Tests()
+    {
+        var glad1 = new Gladiator("Jean-Louis", 80, 50);
+        var glad2 = new Gladiator("15charactername", 100, 40);
+        var fight = new Fight();
+        fight.Start();
+        fight.Join(glad1);
+        fight.Start();
+        fight.Join(glad2);
+        fight.Start();
+        fight.Start();
     }
 
     static void PrintGladiator(Gladiator gladiator)

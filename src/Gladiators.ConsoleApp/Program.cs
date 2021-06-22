@@ -6,19 +6,13 @@ namespace Gladiators.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var gregor = new Entities.Gladiator("Gregor", 80, 40);
+            var gregor = new Entities.Gladiator("Gregor", 100, 40);
+            var jane = new Entities.Gladiator("Jane", 80, 50);
 
-            System.Console.WriteLine($"{gregor.Name} is a healthy fighter, with {gregor.HealthPoints} HP");
-
-            while (!gregor.IsDead)
-            {
-                System.Console.WriteLine($"Write the amount of damage you would like to inflict to {gregor.Name}");
-                int damage = Int32.Parse(System.Console.ReadLine());
-
-                gregor.TakeDamage(damage);
-                System.Console.WriteLine($"{gregor.Name} has {gregor.HealthPoints} HP left");
-            }
-            System.Console.WriteLine($"{ gregor.Name } is dead ");
+            var fight = new Entities.Fight();
+            fight.Join(gregor);
+            fight.Join(jane);
+            fight.Start();
 
         }
     }
