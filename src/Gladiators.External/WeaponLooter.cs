@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gladiator.External
+namespace Gladiators.External
 {
     /// <summary>
     /// DO NOT MODIFY

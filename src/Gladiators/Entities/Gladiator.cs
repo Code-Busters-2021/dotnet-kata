@@ -35,11 +35,24 @@ namespace Gladiators.Entities
 
         public uint Attack { get; private set; }
 
-        public int Damage { get { return (IsDead) ? 0 : (int)Math.Ceiling(Attack * (0.8 + damageRng.NextDouble() * 0.4)); } }
+        public External.WeaponTypes Weapon { get; private set; } = External.WeaponTypes.None;
+
+        public int Damage { get { return (IsDead) ? 0 : (int)Math.Ceiling(Attack * Weapon.AttackModifier() * (0.8 + damageRng.NextDouble() * 0.4)); } }
 
         public bool IsDead { get; private set; } = false;
 
         public void TakeDamage(int damage) { HealthPoints -= damage; }
+
+        public bool TryEquipWeapon(External.WeaponTypes weapon)
+        {
+            if (weapon.AttackModifier() > Weapon.AttackModifier())
+            {
+                Weapon = weapon;
+                return true;
+            }
+            return false;
+        }
+        public void UnequipWeapon() { Weapon = External.WeaponTypes.None; }
 
         // Private
         static Random damageRng = new Random();

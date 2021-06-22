@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Ports\" />
+    <ProjectReference Include="..\Gladiators.External\Gladiators.External.csproj" />
   </ItemGroup>
 
 </Project>

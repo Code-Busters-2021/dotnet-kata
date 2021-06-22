@@ -9,6 +9,8 @@ namespace Gladiators.Entities
         Gladiator fighter1 = null;
         Gladiator fighter2 = null;
 
+        External.WeaponLooter weaponLooter = new External.WeaponLooter();
+
         public bool Join(Gladiator gladiator)
         {
             if (gladiator.IsDead)
@@ -55,13 +57,20 @@ namespace Gladiators.Entities
             }
             System.Console.WriteLine($"{((fighter1.IsDead) ? fighter1.Name : fighter2.Name)} lost the battle");
             System.Console.WriteLine($"{((fighter1.IsDead) ? fighter2.Name : fighter1.Name)} emerges victorious");
+            fighter1.UnequipWeapon();
+            fighter2.UnequipWeapon();
             HasEnded = true;
         }
 
         //Private
-        static void PerformAttack(Gladiator attacker, Gladiator defender)
+        void PerformAttack(Gladiator attacker, Gladiator defender)
         {
             if (attacker.IsDead) return;
+
+            External.WeaponTypes weapon = weaponLooter.TryLootSomething();
+            if (attacker.TryEquipWeapon(weapon))
+                System.Console.WriteLine($"{attacker.Name} equips a {weapon.Name()}");
+
             int damage = attacker.Damage;
             System.Console.WriteLine($"{attacker.Name} attacks {defender.Name} for {damage} Damage");
             defender.TakeDamage(damage);

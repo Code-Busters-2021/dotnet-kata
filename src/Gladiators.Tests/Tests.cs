@@ -1,11 +1,12 @@
 using System;
 using Gladiators.Entities;
+using Gladiators.External;
 
 public class Tests
 {
     public static void Main()
     {
-        Step2Tests();
+        Step3Tests();
     }
 
     static void Step1Tests()
@@ -34,11 +35,9 @@ public class Tests
         System.Console.WriteLine($"Max damage: {maxDamage}");
         System.Console.WriteLine($"Min damage: {minDamage}");
 
-        try { new Gladiator("16charactersname"); }
-        catch (InvalidNameException) { System.Console.WriteLine("Too long"); }
+        try { new Gladiator("16charactersname"); } catch (InvalidNameException) { System.Console.WriteLine("Too long"); }
 
-        try { new Gladiator("2c"); }
-        catch (InvalidNameException) { System.Console.WriteLine("Too short"); }
+        try { new Gladiator("2c"); } catch (InvalidNameException) { System.Console.WriteLine("Too short"); }
     }
 
     static void Step2Tests()
@@ -52,6 +51,22 @@ public class Tests
         fight.Join(glad2);
         fight.Start();
         fight.Start();
+    }
+
+    static void Step3Tests()
+    {
+        var glad1 = new Gladiator("Jean-Louis", 80, 50);
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.Fork));
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.None));
+        System.Console.WriteLine(glad1.Weapon);
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.Club));
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.Fork));
+        System.Console.WriteLine(glad1.Weapon);
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.Sword));
+        System.Console.WriteLine(glad1.TryEquipWeapon(WeaponTypes.Club));
+        System.Console.WriteLine(glad1.Weapon);
+        glad1.UnequipWeapon();
+        System.Console.WriteLine(glad1.Weapon);
     }
 
     static void PrintGladiator(Gladiator gladiator)
